@@ -4,28 +4,32 @@
 # # the starting card of the trick. The function will play the game, and then return either 
 # # the index or a string describing the last card that was found.
 
-# globa
 
-# card.magic <- function(init_card_index, deck) {
-     
-#      current_card_value <- deck[]
-#      current_card_position <- deck[]
-
-     
-
-#     return final_card
-# }
+#function that does the magic: takes in starting card and returns the final card
+magic.perform <- function(index, deck) {
+     while(index < 52){
+        index <- index + deck[[index]]
+     }
+    return (deck[[index]])
+}
 
 
-magic.deck <- c(rep(c(4, 4, 4, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10), each = 4))
-#print(magic.deck) #sanity check
+#function to set up cards, select players initial cards and compare players' final cards
+magic.setup <- function(){
 
-# # 1b) Write a function that will
+    deck <- c(rep(c(4, 4, 4, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10), each = 4)) #all cards in the deck
+    #print(magic.deck) #sanity check
 
-# # set up the magic trick,
-# # randomly pick 2 cards from within the first 10 cards, one for the volunteer and one for the magician,
-# # run through the trick twice, once for the volunteer, and once for the magician.
-# # The function should return a boolean value, indicating whether or not the magician correctly 'guessed' the
-#  volunteer's final card. The sample and rep commands may be useful.
+    #SHUFFLE THE CARDS FOR GODS SAKE
 
+    volunteer_index <- sample(1:10, 1)
+    magician_index <- sample(1:10, 1)
 
+    volunteer.card <- magic.perform(volunteer_index, deck) #FIX THE FACT THAT 4 of K != 4 of Q
+    magician.card <- magic.perform(volunteer_index, deck)
+
+    if (magician.card == volunteer.card){
+        return (TRUE)
+    }
+    return (FALSE)
+}
