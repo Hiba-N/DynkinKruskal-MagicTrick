@@ -1,6 +1,6 @@
 
 #function that does the magic: takes in starting card and returns the final card
-magic.perform <- function(index, deck) {
+magic.trick<- function(index, deck) {
      while (index + deck[[index]] < 53){
         index <- index + deck[[index]] #jumping down the card row
      }
@@ -9,7 +9,7 @@ magic.perform <- function(index, deck) {
 
 
 #function to set up cards, select players initial cards and compare players' final cards
-magic.setup <- function(){
+magic.perform <- function(){
 
 
    deck.suit <- c("2"= 2, "3"=3, "4"=4,"5"= 5, "6"=6, "7"=7, "8"= 8, "9"= 9, "10"= 10, "A"=1, "K"=4, "Q"=4, "J" =4)
@@ -32,8 +32,8 @@ magic.setup <- function(){
     volunteer_index <- sample(1:10, 1)
     magician_index <- sample(1:10, 1)
 
-    volunteer.card <- magic.perform(volunteer_index, deck.shuffled) 
-    magician.card <- magic.perform(magician_index, deck.shuffled)
+    volunteer.card <- magic.trick(volunteer_index, deck.shuffled) 
+    magician.card <- magic.trick(magician_index, deck.shuffled)
 
     if (magician.card == volunteer.card){
         return (TRUE)
@@ -41,10 +41,3 @@ magic.setup <- function(){
     return (FALSE)
 }
 
-#loop to speed sanity check
-
-# result <- TRUE
-# while (result == TRUE){
-#     result <- magic.setup()
-#     print(result)
-# }
