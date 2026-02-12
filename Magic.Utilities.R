@@ -1,7 +1,7 @@
 
 #function that does the magic: takes in starting card and returns the final card
 magic.perform <- function(index, deck) {
-     while (index < 52){
+     while (index + deck[[index]] < 53){
         index <- index + deck[[index]] #jumping down the card row
      }
     return (names(deck)[index]) #returning end card name
@@ -27,19 +27,24 @@ magic.setup <- function(){
    names(deck.heart) <- paste0(names(deck.heart), "H")
 
    deck <- c(deck.ace, deck.spade, deck.club, deck.heart)
-
-   print(deck) #sanity check
-
     deck.shuffled <- sample(deck)
 
     volunteer_index <- sample(1:10, 1)
     magician_index <- sample(1:10, 1)
 
-    volunteer.card <- magic.perform(volunteer_index, deck.shuffled) #FIX THE FACT THAT 4 of K != 4 of Q
-    magician.card <- magic.perform(volunteer_index, deck.shuffled)
+    volunteer.card <- magic.perform(volunteer_index, deck.shuffled) 
+    magician.card <- magic.perform(magician_index, deck.shuffled)
 
     if (magician.card == volunteer.card){
         return (TRUE)
     }
     return (FALSE)
 }
+
+#loop to speed sanity check
+
+# result <- TRUE
+# while (result == TRUE){
+#     result <- magic.setup()
+#     print(result)
+# }
