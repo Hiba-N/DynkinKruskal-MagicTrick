@@ -12,6 +12,7 @@ magic.trick<- function(index, deck) {
 magic.perform <- function(instance){
 
 
+    #creating a deck
    deck.suit <- c("2"= 2, "3"=3, "4"=4,"5"= 5, "6"=6, "7"=7, "8"= 8, "9"= 9, "10"= 10, "A"=1, "K"=4, "Q"=4, "J" =4)
 
    deck.ace <- deck.suit
@@ -29,12 +30,15 @@ magic.perform <- function(instance){
    deck <- c(deck.ace, deck.spade, deck.club, deck.heart)
     deck.shuffled <- sample(deck)
 
+    #selecting first cards
     volunteer_index <- sample(1:10, 1)
     magician_index <- sample(1:10, 1)
 
+    #performing the trick
     volunteer.card <- magic.trick(volunteer_index, deck.shuffled) 
     magician.card <- magic.trick(magician_index, deck.shuffled)
 
+    #checking results
     if (magician.card == volunteer.card){
         return (TRUE)
     }
