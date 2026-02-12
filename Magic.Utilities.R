@@ -9,7 +9,7 @@ magic.trick<- function(index, deck) {
 
 
 #function to set up cards, select players initial cards and compare players' final cards
-magic.perform <- function(){
+magic.perform <- function(instance){
 
 
    deck.suit <- c("2"= 2, "3"=3, "4"=4,"5"= 5, "6"=6, "7"=7, "8"= 8, "9"= 9, "10"= 10, "A"=1, "K"=4, "Q"=4, "J" =4)
